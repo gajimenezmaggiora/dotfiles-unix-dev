@@ -15,6 +15,9 @@ let g:neocomplcache_auto_completion_start_length = 3
 " Map standard Ctrl-N completion to Cmd-Space
 inoremap <D-Space> <C-n>
 
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
+
 " This makes sure we use neocomplcache completefunc instead of 
 " the one in rails.vim, otherwise this plugin will crap out
 let g:neocomplcache_force_overwrite_completefunc = 1

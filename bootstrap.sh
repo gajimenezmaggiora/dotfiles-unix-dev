@@ -17,6 +17,7 @@ else
 fi
 unset doIt
 
+# Process vundels
 if [ ! -d ~/.vim/bundle/vundle ]; then
   echo "Vim Vundel does not exist."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -27,4 +28,10 @@ else
 fi
 
 vim +BundleInstall +qall
+
+# Get perlbrew
+curl -kL http://install.perlbrew.pl | bash
+perlbrew init
+perlbrew install-patchperl
+perlbrew install-cpanm
 
