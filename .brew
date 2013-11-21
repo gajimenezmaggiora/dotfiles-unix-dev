@@ -49,7 +49,11 @@ brew install tree
 #brew tap homebrew/versions
 #brew install lua52
 
+# Added 11/19/2013
 brew install ctags
+
+# Added 11/20/2013
+brew install mongodb
 
 # Install native apps
 brew tap phinze/homebrew-cask
