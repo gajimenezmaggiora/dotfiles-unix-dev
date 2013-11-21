@@ -49,6 +49,8 @@ brew install tree
 #brew tap homebrew/versions
 #brew install lua52
 
+brew install ctags
+
 # Install native apps
 brew tap phinze/homebrew-cask
 brew install brew-cask
