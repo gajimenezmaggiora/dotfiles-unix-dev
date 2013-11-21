@@ -17,6 +17,14 @@ else
 fi
 unset doIt
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+if [ ! -d ~/.vim/bundle/vundle ]; then
+  echo "Vim Vundel does not exist."
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+else
+  echo "Vim Vundel does exist."
+  cd ~/.vim/bundle/vundle
+  git pull -u
+fi
+
 vim +BundleInstall +qall
 
