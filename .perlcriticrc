@@ -1,0 +1,5 @@
+severity  = 1
+verbose = 4
+pager = less
+color = 1
+
