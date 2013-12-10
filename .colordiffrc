@@ -1,0 +1,6 @@
+# be more git-like:
+plain=off
+newtext=darkgreen
+oldtext=darkred
+diffstuff=darkcyan
+

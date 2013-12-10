@@ -1,4 +1,0 @@
-" Perl support
-Bundle "vim-perl/vim-perl"
-Bundle "vim-scripts/perl-support.vim"
-
