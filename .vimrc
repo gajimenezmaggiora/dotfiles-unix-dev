@@ -109,7 +109,8 @@ let perl_fold=1
 let perl_fold_blocks = 1
 
 " Powerline
-source /usr/local/python2.7/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline/bindings/vim/plugin/source_plugin.vim
+" source /usr/local/python2.7/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline/bindings/vim/plugin/source_plugin.vim
+let g:Powerline_symbols = 'fancy'
 let g:Powerline_stl_path_style = 'short'
 
 " Tagbar
