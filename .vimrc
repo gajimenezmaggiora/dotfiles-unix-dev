@@ -10,7 +10,8 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 
 " Perl
-Bundle 'benizi/perl-support.vim'
+Bundle 'vim-scripts/perl-support.vim'
+" Bundle 'mattfoster/vim-Perl-Critic'
 
 " Colors
 Bundle 'nanotech/jellybeans.vim'
@@ -47,7 +48,7 @@ Bundle "vim-scripts/AutoTag"
 Bundle "tpope/vim-fugitive"
 
 filetype plugin indent on  " Automatically detect file types, and enable file-type-specific plugins and indentation.
-set expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
+" set expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
 syntax on
 set nocursorline
 set nocursorcolumn
@@ -109,6 +110,13 @@ set statusline+=%*
 nnoremap <silent> ` :Errors<CR>
 " let perl_fold=1
 " let perl_fold_blocks = 1
+
+" Perl critic
+" autocmd! BufReadPost,BufWritePost,FileReadPost,FileWritePost *.pl call ShowCriticisms()
+" autocmd! BufReadPost,BufWritePost,FileReadPost,FileWritePost *.pm call ShowCriticisms()
+" let g:Perl_PerlcriticSeverity = 1
+" let g:Perl_PerlcriticVerbosity = 4
+
 
 " Powerline
 " source /usr/local/python2.7/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline/bindings/vim/plugin/source_plugin.vim
@@ -194,11 +202,26 @@ set listchars=tab:▸\ ,eol:¬
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
+" ================ Turn Off Swap Files ==============
+"
+set noswapfile
+set nobackup
+set nowb
 
 " Indentation
-set autoindent  " Automatically set the indent of a new line (local to buffer).
-set smartindent
+" set autoindent  " Automatically set the indent of a new line (local to buffer).
+" set smartindent
 "set shiftround  " Round shift actions. i.e. When at 3 spaces, and I hit > ... go to 4, not 5. FIXME: Doesn't work.
+
+" ================ Indentation ======================
+"
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
 
 " ================ Folds ============================
 "
