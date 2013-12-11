@@ -41,7 +41,7 @@ Bundle "techlivezheng/vim-plugin-minibufexpl"
 Bundle "majutsushi/tagbar"
 
 " Misc
-Bundle "Shougo/neocomplcache"
+Bundle "Shougo/neocomplcache.git"
 Bundle "scrooloose/nerdtree"
 Bundle "vim-scripts/AutoTag"
 Bundle "tpope/vim-fugitive"
@@ -49,6 +49,8 @@ Bundle "tpope/vim-fugitive"
 filetype plugin indent on  " Automatically detect file types, and enable file-type-specific plugins and indentation.
 set expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
 syntax on
+set nocursorline
+set nocursorcolumn
 
 " Colors
 set t_Co=256  " Set terminal to display 256 colors.
@@ -105,8 +107,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 " Map '`' to open error window.
 nnoremap <silent> ` :Errors<CR>
-let perl_fold=1
-let perl_fold_blocks = 1
+" let perl_fold=1
+" let perl_fold_blocks = 1
 
 " Powerline
 " source /usr/local/python2.7/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline/bindings/vim/plugin/source_plugin.vim
@@ -136,9 +138,23 @@ hi MBEChanged guifg=#CD5907 guibg=fg
 hi MBENormal guifg=#808080 guibg=fg
 
 " Neo Complete Cache
-" let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 1
 " let g:neocomplcache_enable_auto_select = 1
-" let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_smart_case = 1
+
+" default # of completions is 100, that's crazy
+let g:neocomplcache_max_list = 5
+
+" words less than 3 letters long aren't worth completing
+let g:neocomplcache_auto_completion_start_length = 3
+
+" This makes sure we use neocomplcache completefunc instead of 
+" " the one in rails.vim, otherwise this plugin will crap out
+let g:neocomplcache_force_overwrite_completefunc = 1
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -184,12 +200,19 @@ set autoindent  " Automatically set the indent of a new line (local to buffer).
 set smartindent
 "set shiftround  " Round shift actions. i.e. When at 3 spaces, and I hit > ... go to 4, not 5. FIXME: Doesn't work.
 
+" ================ Folds ============================
+"
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+" set nofoldenable        "dont fold by default
+
 " Folding
 set foldenable  " Turn on folding.
-set foldmethod=syntax  " Fold on the marker.
+" set foldmethod=syntax  " Fold on the marker.
 set foldlevel=0  " Fold everything when opening a file.
 " set foldnestmax=1  " Don't fold inner blocks.
 set foldopen=block,hor,tag,percent,mark,quickfix  " Which movements open folds.
+
 "Sourced from vim tip: http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
@@ -204,4 +227,27 @@ noremap <Down> <C-w>j
 noremap <Left> <C-w>h
 noremap <Right> <C-w>l
 
+" ================ Completion =======================
+"
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
 
+" ================ Scrolling ========================
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+" " ================ Mouse Scrolling =================
+
+:set mouse=nicr
