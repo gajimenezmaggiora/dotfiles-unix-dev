@@ -47,6 +47,12 @@ Bundle "scrooloose/nerdtree"
 Bundle "vim-scripts/AutoTag"
 Bundle "tpope/vim-fugitive"
 
+" Change mapleader
+let mapleader=","
+
+" Set timeoutlen for mappings and key combinations
+set timeoutlen=2000
+
 filetype plugin indent on  " Automatically detect file types, and enable file-type-specific plugins and indentation.
 " set expandtab smarttab tabstop=4 softtabstop=4 shiftwidth=4
 syntax on
@@ -197,7 +203,9 @@ set matchtime=3  " How many tenths of a second to wait before showing
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+
+set lcs=tab:▸\ ,eol:¬,trail:·,nbsp:_
+
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
@@ -274,3 +282,16 @@ set sidescroll=1
 " " ================ Mouse Scrolling =================
 
 :set mouse=nicr
+
+" ====================  Functions ====================
+
+" Strip trailing whitespace (,ss)
+function! StripWhitespace()
+        let save_cursor = getpos(".")
+        let old_query = getreg('/')
+        :%s/\s\+$//e
+        call setpos('.', save_cursor)
+        call setreg('/', old_query)
+endfunction
+noremap <leader>ss :call StripWhitespace()<CR>
+

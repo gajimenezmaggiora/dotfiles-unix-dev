@@ -1,3 +1,3 @@
 # Add Postgres.app to path
-PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+PATH="/usr/local/bin:$PATH"
 
